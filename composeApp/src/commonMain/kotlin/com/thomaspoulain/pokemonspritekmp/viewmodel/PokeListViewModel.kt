@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.thomaspoulain.pokemonspritekmp.model.Generation
 import com.thomaspoulain.pokemonspritekmp.model.Pokemon
 import com.thomaspoulain.pokemonspritekmp.state.PokeState
-import io.ktor.client.HttpClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +23,8 @@ class PokeListViewModel() : ViewModel() {
             generation.range.map {
                 Pokemon(
                     id = it,
-                    name = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$it.png",
+                    image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$it.png",
+                    generation = generation,
                 )
             }
         }.onSuccess {

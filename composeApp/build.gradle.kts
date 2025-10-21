@@ -8,9 +8,6 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.ktorfit)
-    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -48,7 +45,6 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.android)
-            implementation(libs.ktor.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -59,18 +55,14 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose.viewmodel.navigation)
+
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
-            implementation(libs.ktor.core)
-
-            implementation(libs.ktorfit)
-            implementation(libs.serialization.json)
-            implementation(libs.content.negotiation)
-            implementation(libs.kotlinx.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -78,10 +70,10 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation(libs.ktor.jvm)
+            implementation(libs.ktor.java)
         }
-        iosMain.dependencies {
-            implementation(libs.ktor.ios)
+        appleMain.dependencies {
+            implementation(libs.ktor.darwin)
         }
     }
 }
@@ -115,11 +107,6 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
-    add("kspCommonMainMetadata", libs.ktorfit.compiler)
-    add("kspAndroid", libs.ktorfit.compiler)
-    add("kspIosSimulatorArm64", libs.ktorfit.compiler)
-//    add("kspIosX64", libs.ktorfit.compiler)
-    add("kspIosArm64", libs.ktorfit.compiler)
 }
 
 compose.desktop {
