@@ -125,7 +125,7 @@ fun ContentSuccess(items: List<Pokemon>, listState: LazyGridState) {
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
         state = listState,
-        columns = GridCells.Adaptive(minSize = 80.dp),
+        columns = GridCells.Adaptive(minSize = 120.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         content = {
             items(items) {
