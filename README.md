@@ -1,6 +1,6 @@
 # PokemonSpriteKMP
 
-This project is a Kotlin Multiplatform project that displays pokemon artwork from the PokeAPI.
+This project is a Kotlin Multiplatform project that displays Pokémon artwork from the PokeAPI.
 
 ## Features
 
@@ -16,3 +16,13 @@ This project is a Kotlin Multiplatform project that displays pokemon artwork fro
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Koin](https://insert-koin.io/)
 - [Coil](https://coil-kt.github.io/coil/)
+
+## Screenshots
+### Android
+![Android platform](./screenshots/android.jpg)
+
+### iOS
+![Android platform](./screenshots/iOS.jpg)
+
+### macOS
+![Android platform](./screenshots/macOS.jpg)
