@@ -1,16 +1,15 @@
 package com.thomaspoulain.pokemonspritekmp.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -22,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.thomaspoulain.pokemonspritekmp.composable.Filters
@@ -48,6 +48,7 @@ fun PokemonScreen(vm: PokeListViewModel = koinViewModel()) {
     ) { innerPadding ->
         Column(
             modifier = Modifier
+                .background(Color.White)
                 .padding(innerPadding)
                 .fillMaxSize(),
         ) {
@@ -69,10 +70,9 @@ fun MainContent(
     state: PokeState,
     onFilterChange: (Generation) -> Unit
 ) {
-    var filter: Generation by remember { mutableStateOf(Generation.Gen1) }
+    var filter by remember { mutableStateOf(Generation.Gen1) }
     val listState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
-
 
     Filters(
         filter = filter,
@@ -91,7 +91,7 @@ fun MainContent(
         }
 
         is PokeState.Success -> {
-            ContentSuccess(state.items, listState, filter)
+            ContentSuccess(state.items, listState)
         }
 
         is PokeState.Error -> {
@@ -121,11 +121,11 @@ fun ContentLoading() {
 }
 
 @Composable
-fun ContentSuccess(items: List<Pokemon>, listState: LazyGridState, filter: Generation) {
+fun ContentSuccess(items: List<Pokemon>, listState: LazyGridState) {
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
         state = listState,
-        columns = GridCells.Adaptive(minSize = 160.dp),
+        columns = GridCells.Adaptive(minSize = 80.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         content = {
             items(items) {

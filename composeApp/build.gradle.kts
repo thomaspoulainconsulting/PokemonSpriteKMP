@@ -44,7 +44,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.ktor.android)
+            implementation(libs.ktor.client.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -70,10 +70,10 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation(libs.ktor.java)
+            implementation(libs.ktor.client.java)
         }
         appleMain.dependencies {
-            implementation(libs.ktor.darwin)
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
