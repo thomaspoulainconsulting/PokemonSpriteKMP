@@ -21,7 +21,6 @@ import org.koin.dsl.KoinConfiguration
 @Preview
 fun App() {
     MaterialTheme {
-
         KoinMultiplatformApplication(
             config = KoinConfiguration {
                 modules(sharedModule)

@@ -8,6 +8,9 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlinSerialization)
+    id("com.google.devtools.ksp") version "2.3.0"
+    id("de.jensklingenberg.ktorfit") version "2.6.4"
 }
 
 kotlin {
@@ -22,7 +25,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "PokemonArtworkKMP"
             isStatic = true
         }
     }
@@ -55,6 +58,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.androidx.navigation)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
@@ -63,9 +67,10 @@ kotlin {
 
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+
+            implementation(libs.ktorfit)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
