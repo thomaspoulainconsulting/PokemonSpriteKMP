@@ -71,6 +71,12 @@ kotlin {
             implementation(libs.ktorfit)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+
+            implementation(libs.material3)
+            implementation(libs.androidx.compose.adaptive)
+            implementation(libs.androidx.compose.adaptive.layout)
+            implementation(libs.androidx.compose.adaptive.navigation)
+            implementation(libs.material.icons.extended)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)

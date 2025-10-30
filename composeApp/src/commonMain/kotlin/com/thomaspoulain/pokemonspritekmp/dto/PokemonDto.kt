@@ -1,8 +1,7 @@
 package com.thomaspoulain.pokemonspritekmp.dto
 
-import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonNames
 
 @Serializable
 data class PokemonDto(
@@ -18,50 +17,66 @@ data class Cries(
     val legacy: String,
 )
 
-@OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class Sprites(
-    @JsonNames("front_default") val frontDefault: String,
-    @JsonNames("front_shiny") val frontShiny: String,
-    val versions: Versions,
+    val versions: Map<String, Map<String, SpriteObject>> = emptyMap()
 )
 
-@OptIn(ExperimentalSerializationApi::class)
-@Serializable
-data class Versions(
-    @JsonNames("generation-i") val generation1: Generation1,
-    @JsonNames("generation-ii") val generation2: Generation2,
-    @JsonNames("generation-iii") val generation3: Generation3,
-)
-
-@OptIn(ExperimentalSerializationApi::class)
-@Serializable
-data class Generation1(
-    @JsonNames("red-blue") val redBlue: SpriteObject,
-    @JsonNames("yellow") val yellow: SpriteObject,
-)
-
-@OptIn(ExperimentalSerializationApi::class)
-@Serializable
-data class Generation2(
-    @JsonNames("crystal") val crystal: SpriteObject,
-    @JsonNames("gold") val gold: SpriteObject,
-    @JsonNames("silver") val silver: SpriteObject,
-)
-
-@OptIn(ExperimentalSerializationApi::class)
-@Serializable
-data class Generation3(
-    @JsonNames("emerald") val emerald: SpriteObject,
-    @JsonNames("ruby-sapphire") val rubySapphire: SpriteObject,
-    @JsonNames("firered-leafgreen") val fireredLeafgreen: SpriteObject,
-)
-
-@OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class SpriteObject(
-    @JsonNames("front_default") val frontDefault: String,
-    @JsonNames("front_shiny") val frontShiny: String? = null,
-    @JsonNames("back_default") val backDefault: String? = null,
-    @JsonNames("back_shiny") val backShiny: String? = null,
+    @SerialName("front_default") val frontDefault: String? = null,
+    @SerialName("front_shiny") val frontShiny: String? = null,
+    @SerialName("back_default") val backDefault: String? = null,
+    @SerialName("back_shiny") val backShiny: String? = null,
 )
+
+data class GameSprite(
+    val generationKey: String,
+    val gameKey: String,
+    val sprite: SpriteObject
+)
+
+fun Sprites.gamesOf(generationKey: Generation): List<Pair<String, SpriteObject>> =
+    versions[generationKey.key]?.map { it.key to it.value }.orEmpty()
+
+fun Sprites.allGameSprites(): List<GameSprite> =
+    versions.flatMap { (gen, games) ->
+        games.map { (game, sprite) -> GameSprite(gen, game, sprite) }
+    }
+
+fun Sprites.spriteOf(generationKey: String, gameKey: String): SpriteObject? =
+    versions[generationKey]?.get(gameKey)
+
+/* ------------------------- (Optionnel) Clés connues ------------------------- */
+
+enum class Generation(val key: String) {
+    GEN1("generation-i"),
+    GEN2("generation-ii"),
+    GEN3("generation-iii"),
+    GEN4("generation-iv"),
+    GEN5("generation-v"),
+    GEN6("generation-vi");
+}
+
+object GamesGen1 {
+    const val RED_BLUE = "red-blue"
+    const val YELLOW = "yellow"
+}
+
+object GamesGen2 {
+    const val CRYSTAL = "crystal"
+    const val GOLD = "gold"
+    const val SILVER = "silver"
+}
+
+object GamesGen3 {
+    const val FIRE_RED_LEAF_GREEN = "firered-leafgreen"
+    const val RUBY_SAPPHIRE = "ruby-sapphire"
+    const val EMERALD = "emerald"
+}
+
+object GamesGen4 {
+    const val DIAMOND_PEARL = "diamond-pearl"
+    const val HEARTGOLD_SOULSILVER = "heartgold-soulsilver"
+    const val PLATINUM = "platinum"
+}
