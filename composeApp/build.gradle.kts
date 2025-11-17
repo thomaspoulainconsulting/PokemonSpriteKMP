@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.kotlinSerialization)
-    id("com.google.devtools.ksp") version "2.3.0"
+    id("com.google.devtools.ksp") version "2.3.2"
     id("de.jensklingenberg.ktorfit") version "2.6.4"
 }
 
@@ -77,6 +77,7 @@ kotlin {
             implementation(libs.androidx.compose.adaptive.layout)
             implementation(libs.androidx.compose.adaptive.navigation)
             implementation(libs.material.icons.extended)
+            implementation(libs.kotlinx.collections.immutable)
         }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)

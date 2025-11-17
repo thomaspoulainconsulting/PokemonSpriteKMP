@@ -1,25 +1,27 @@
 [versions]
-agp = "8.13.0"
+agp = "8.13.1"
 android-compileSdk = "36"
 android-minSdk = "34"
 android-targetSdk = "36"
-androidx-lifecycle = "2.9.5"
-composeHotReload = "1.0.0-rc02"
-composeMultiplatform = "1.9.2"
+androidx-lifecycle = "2.9.6"
+composeHotReload = "1.0.0-rc04"
+composeMultiplatform = "1.9.3"
 kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
+kotlinxCollectionsImmutable = "0.4.0"
 materialIconsExtended = "1.7.3"
 navigation-compose = "2.9.1"
 koin = "4.1.1"
 coil = "3.3.0"
-ktor = "3.3.1"
-androidxComposeBom = "2025.10.01"
+ktor = "3.3.2"
 ktorfit = "2.6.4"
 material3-adaptative="1.2.0"
+material3 = "1.10.0-alpha04"
 
 [libraries]
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
-material3 = { module = "org.jetbrains.compose.material3:material3", version = "1.10.0-alpha03" }
+material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
 androidx-compose-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "material3-adaptative" }
 androidx-compose-adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "material3-adaptative" }
 androidx-compose-adaptive-navigation = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation", version.ref = "material3-adaptative" }
