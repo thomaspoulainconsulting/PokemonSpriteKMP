@@ -56,9 +56,12 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(libs.androidx.navigation)
+            implementation(libs.jetbrains.lifecycle.viewmodelCompose)
+            implementation(libs.jetbrains.lifecycle.runtimeCompose)
+            implementation(libs.jetbrains.navigation)
+            implementation(libs.jetbrains.compose.adaptive)
+            implementation(libs.jetbrains.compose.adaptive.layout)
+            implementation(libs.jetbrains.compose.adaptive.navigation)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
@@ -73,9 +76,6 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation(libs.material3)
-            implementation(libs.androidx.compose.adaptive)
-            implementation(libs.androidx.compose.adaptive.layout)
-            implementation(libs.androidx.compose.adaptive.navigation)
             implementation(libs.material.icons.extended)
             implementation(libs.kotlinx.collections.immutable)
         }
