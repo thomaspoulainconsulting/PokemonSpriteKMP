@@ -1,6 +1,6 @@
-# PokemonSpriteKMP
+# PokemonSpriteCMP
 
-This project is a Kotlin Multiplatform project that displays Pokémon artwork from the PokeAPI.
+This project is a Compose Multiplatform project that displays Pokémon artwork from the PokeAPI.
 
 ## Features
 
