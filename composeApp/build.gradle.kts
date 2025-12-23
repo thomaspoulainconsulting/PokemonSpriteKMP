@@ -10,7 +10,11 @@ plugins {
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.kotlinSerialization)
     id("com.google.devtools.ksp") version "2.3.2"
-    id("de.jensklingenberg.ktorfit") version "2.6.4"
+    id("de.jensklingenberg.ktorfit") version "2.7.1"
+}
+
+ktorfit {
+    compilerPluginVersion.set("2.3.3")
 }
 
 kotlin {
@@ -62,19 +66,15 @@ kotlin {
             implementation(libs.jetbrains.compose.adaptive)
             implementation(libs.jetbrains.compose.adaptive.layout)
             implementation(libs.jetbrains.compose.adaptive.navigation)
-
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose.viewmodel.navigation)
-
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
-
             implementation(libs.ktorfit)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
-
             implementation(libs.material3)
             implementation(libs.material.icons.extended)
             implementation(libs.kotlinx.collections.immutable)

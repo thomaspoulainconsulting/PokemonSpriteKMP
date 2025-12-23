@@ -95,6 +95,7 @@ fun MainContent(
     Filters(
         filter = filter,
         onFilterChange = {
+            filter = it
             onFilterChange(it)
             coroutineScope.launch {
                 listState.scrollToItem(0)

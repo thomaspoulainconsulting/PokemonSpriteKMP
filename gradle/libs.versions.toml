@@ -1,22 +1,22 @@
 [versions]
-agp = "8.13.1"
+agp = "8.13.2"
 android-compileSdk = "36"
 android-minSdk = "34"
 android-targetSdk = "36"
 androidx-lifecycle = "2.9.6"
-composeHotReload = "1.0.0-rc04"
+composeHotReload = "1.0.0"
 composeMultiplatform = "1.9.3"
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 kotlinx-coroutines = "1.10.2"
 kotlinxCollectionsImmutable = "0.4.0"
 materialIconsExtended = "1.7.3"
 navigation-compose = "2.9.1"
 koin = "4.1.1"
 coil = "3.3.0"
-ktor = "3.3.2"
-ktorfit = "2.6.4"
+ktor = "3.3.3"
+ktorfit = "2.7.1"
 material3-adaptative="1.2.0"
-material3 = "1.10.0-alpha04"
+material3 = "1.10.0-alpha05"
 
 [libraries]
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
