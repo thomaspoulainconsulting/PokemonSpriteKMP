@@ -1,6 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+private val isInIdeaSync
+    get() = System.getProperty("idea.sync.active").toBoolean()
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -9,8 +11,8 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.kotlinSerialization)
-    id("com.google.devtools.ksp") version "2.3.2"
-    id("de.jensklingenberg.ktorfit") version "2.7.1"
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.ktorfit)
 }
 
 ktorfit {
@@ -18,6 +20,13 @@ ktorfit {
 }
 
 kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xexplicit-backing-fields")
+        if (isInIdeaSync) {
+            freeCompilerArgs.add("-XXLanguage:+ExplicitBackingFields")
+        }
+    }
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -35,17 +44,6 @@ kotlin {
     }
     
     jvm()
-    
-    js {
-        browser()
-        binaries.executable()
-    }
-    
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
     
     sourceSets {
         androidMain.dependencies {
