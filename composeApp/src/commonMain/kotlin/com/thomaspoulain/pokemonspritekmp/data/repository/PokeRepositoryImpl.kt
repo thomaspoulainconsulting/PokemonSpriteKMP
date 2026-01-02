@@ -10,9 +10,11 @@ import com.thomaspoulain.pokemonspritekmp.domain.repository.PokeRepository
 class PokeRepositoryImpl(
     private val service: PokeApiService,
 ) : PokeRepository {
-    override suspend fun getPokemonDetails(id: PokemonId): PokemonDto = service.getPokemon(id)
+    override suspend fun getPokemonDetails(id: PokemonId): Result<PokemonDto> = runCatching {
+        service.getPokemon(id)
+    }
 
-    override suspend fun getPokemonFromGeneration(generation: Generation): List<Pokemon> =
+    override suspend fun getPokemonFromGeneration(generation: Generation): Result<List<Pokemon>> = runCatching {
         generation.range.map {
             Pokemon(
                 id = it.toString(),
@@ -20,4 +22,5 @@ class PokeRepositoryImpl(
                 generation = generation,
             )
         }
+    }
 }

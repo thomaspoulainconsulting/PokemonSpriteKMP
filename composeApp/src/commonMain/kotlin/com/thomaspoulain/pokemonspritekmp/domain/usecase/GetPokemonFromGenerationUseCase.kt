@@ -5,8 +5,8 @@ import com.thomaspoulain.pokemonspritekmp.domain.model.Pokemon
 import com.thomaspoulain.pokemonspritekmp.domain.repository.PokeRepository
 
 class GetPokemonFromGenerationUseCase(
-    private val pokemonRepository: PokeRepository,
+    private val repository: PokeRepository,
 ) {
-    suspend fun getPokemon(generation: Generation): List<Pokemon> =
-        pokemonRepository.getPokemonFromGeneration(generation)
+    suspend operator fun invoke(generation: Generation): Result<List<Pokemon>> =
+        repository.getPokemonFromGeneration(generation)
 }

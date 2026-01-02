@@ -29,25 +29,18 @@ class PokeListViewModel(
 
     fun loadPokedex(generation: Generation) = viewModelScope.launch {
         state.value = PokeState.Loading
-
-        runCatching {
-            getPokemonFromGenerationUseCase.getPokemon(generation)
-        }.onSuccess {
-            state.value = PokeState.Success(items = it.toImmutableList())
-        }.onFailure {
-            state.value = PokeState.Failure(ErrorDetails(it.message.orEmpty()))
-        }
+        state.value = getPokemonFromGenerationUseCase(generation)
+            .fold(
+                onSuccess = { PokeState.Success(items = it.toImmutableList()) },
+                onFailure = { PokeState.Failure(ErrorDetails(it.message.orEmpty())) }
+            )
     }
 
     fun getInformation(id: String) = viewModelScope.launch {
         pokemonDetails.value = PokeDetailsState.Loading
-
-        runCatching {
-            getPokemonDetailsUseCase.getPokemonDetails(id)
-        }.onSuccess {
-            pokemonDetails.value = PokeDetailsState.Success(it)
-        }.onFailure {
-            pokemonDetails.value = PokeDetailsState.Error(it)
-        }
+        pokemonDetails.value = getPokemonDetailsUseCase(id).fold(
+            onSuccess = { PokeDetailsState.Success(it) },
+            onFailure = { PokeDetailsState.Error(it) }
+        )
     }
 }
