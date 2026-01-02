@@ -16,7 +16,7 @@ class PokeRepositoryImpl(
         generation.range.map {
             Pokemon(
                 id = it.toString(),
-                image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$it.png",
+                image = "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${it.toString().padStart(3, '0')}.png",
                 generation = generation,
             )
         }
